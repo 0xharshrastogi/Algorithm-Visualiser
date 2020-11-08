@@ -116,7 +116,46 @@ body {
 .bar {
   background-color: #287066;
   width: 1px;
-  animation: height-full 1s linear;
+}
+
+.sub-heading {
+  color: #fff;
+  background-color: #41b7a8;
+  font-size: 1.6rem;
+  letter-spacing: 0.23rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+form label {
+  margin: 10px;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 10px;
+  height: 10px;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  cursor: pointer;
+  height: 10px;
+  background-color: #3CA89A;
+  border-radius: 5px;
+}
+
+input[type="range"]::webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: goldenrod;
+  margin-top: -4px;
 }
 
 .text-left {
@@ -138,4 +177,8 @@ body {
 .bd {
   border: 1px solid rgba(150, 150, 150, 0.4);
   border-radius: 0.5rem;
+}
+
+.p1 {
+  padding: 1rem;
 }
