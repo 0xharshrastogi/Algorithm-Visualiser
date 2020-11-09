@@ -1,0 +1,5 @@
+Color Code :
+    Green: #3CA89A
+
+Font Family 
+    RaleWay 700, 600, 400
