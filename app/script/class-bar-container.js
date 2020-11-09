@@ -9,11 +9,7 @@ class BarContainer {
 		})();
 	}
 
-	push = (barObject) => {
-		if (!Bar.isBar(barObject)) {
-			throw new Error("Passed Value Is Not Instance Of Bar");
-		}
-		// console.log(barObject);
-		this.barElement.appendChild(barObject.barElm);
+	push = (barElement) => {
+		this.barElement.appendChild(barElement);
 	};
 }

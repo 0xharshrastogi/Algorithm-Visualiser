@@ -1,5 +1,5 @@
 class Bar {
-	constructor(barId, height) {
+	constructor(barId) {
 		if (!barId) {
 			throw new Error("BAR-ID not passed as an argument");
 		}
@@ -12,10 +12,10 @@ class Bar {
 			const parentHeight = document.getElementById("bars-container")
 				.clientHeight;
 
+			// ele.style.height = `${Math.round(parentHeight * Math.random() - 21)}px`;
 			ele.style.height = `${Math.round(
-				parentHeight * Math.random() - 16
+				(parentHeight - 26) * Math.random() + 10
 			)}px`;
-
 			return ele;
 		})();
 

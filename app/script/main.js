@@ -1,3 +1,7 @@
+const globalVar = {
+	dataSet: new DataSet(),
+};
+
 function insertBox() {
 	const barContainerObject = new BarContainer(),
 		primaryContElm = document.getElementById("primary-container");
@@ -19,19 +23,40 @@ async function setup(count) {
 	barContainerObject.barElement.innerHTML = "";
 	let i = count;
 	while (i--) {
-		setTimeout(barContainerObject.push, 0, new Bar(`bar${i}`));
+		const newBarElement = new Bar(`bar${i}`),
+			newBarValue = parseInt(newBarElement.barElm.style.height);
+
+		setTimeout(barContainerObject.push, 0, newBarElement.barElm);
+		globalVar.dataSet.push(i, newBarValue);
 	}
 }
 
-setTimeout(setup, 0, 200);
+//set Range Value Id VAlue IN Dom
+function getRangeValueInDOM(val) {
+	document.getElementById("sampleCountValue").innerText = `${val}`;
+}
+
+document.addEventListener("load", () => {
+	getRangeValueInDOM(100);
+	console.log("hello");
+});
+
+//
+setTimeout(setup, 0, 100);
 // setup(100);
 function main() {
 	const sampleCountELm = document.getElementById("sampleCount");
 
 	sampleCountELm.addEventListener("mouseup", (e) => {
-		console.dir(e);
-
 		setTimeout(setup, 0, sampleCountELm.value);
+		getRangeValueInDOM(sampleCountELm.value);
+		globalVar.dataSet = new DataSet();
+	});
+
+	sampleCountELm.addEventListener("touchstart", (e) => {
+		setTimeout(setup, 0, sampleCountELm.value);
+		getRangeValueInDOM(sampleCountELm.value);
+		globalVar.dataSet = new DataSet();
 	});
 }
 

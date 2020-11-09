@@ -61,8 +61,16 @@
                 <form class="form p1">
                     <div>
                         <label for="sample-count" class="dp-bl">Sample Count</label>
-                        <input type="range" name="sample-count" id="sampleCount" min="1" max="2000" value="1">
+                        <input type="range" name="sample-count" id="sampleCount" min="1" max="2000" value="100">
+                        <span id="sampleCountValue" class="value">100</span>
                     </div>
+
+                    <!-- Sort Button -->
+
+                    <div>
+                        <input type="submit" value="Sort">
+                    </div>
+
                 </form>
             </div>
         </section>
@@ -72,6 +80,7 @@
 
     <!-- Fetch Title And Sets It -->
     <script src="app/script/getTitle.js"></script>
+    <script src="app/script/class-data.js"></script>
     <script src="app/script/class-bar-container.js"></script>
     <script src="app/script/class-bar.js"></script>
     <script src="app/script/main.js"></script>

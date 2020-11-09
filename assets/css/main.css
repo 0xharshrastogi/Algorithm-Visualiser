@@ -4,6 +4,7 @@ html {
 
 body {
   font-family: "Raleway", sans-serif;
+  overflow: hidden;
   margin: 0 auto;
 }
 
@@ -132,6 +133,8 @@ form label {
 }
 
 input[type="range"] {
+  -webkit-appearance: none;
+  background: transparent;
   width: 100%;
   margin: 10px;
   height: 10px;
@@ -148,14 +151,26 @@ input[type="range"]::-webkit-slider-runnable-track {
   border-radius: 5px;
 }
 
+input[type="range"]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+}
+
 input[type="range"]::webkit-slider-thumb {
   -webkit-appearance: none;
-  border: none;
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  background: goldenrod;
-  margin-top: -4px;
+  border: 1px solid #000;
+}
+
+input[type="range"]::-moz-range-thumb {
+  border: 1px solid red;
+}
+
+.value {
+  font-weight: bolder;
+  margin: 10px;
+  border: 1px solid #3CA89A;
+  line-height: 1.4;
+  display: inline-block;
 }
 
 .text-left {
