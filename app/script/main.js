@@ -42,7 +42,7 @@ document.addEventListener("load", () => {
 });
 
 //
-setTimeout(setup, 0, 100);
+setTimeout(setup, 0, 10);
 // setup(100);
 function main() {
 	const sampleCountELm = document.getElementById("sampleCount");
