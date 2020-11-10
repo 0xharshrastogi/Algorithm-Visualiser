@@ -31,6 +31,7 @@ async function setup(count) {
 	}
 }
 
+setTimeout(setup, 0, 5);
 //set Range Value Id VAlue IN Dom
 function getRangeValueInDOM(val) {
 	document.getElementById("sampleCountValue").innerText = `${val}`;
@@ -42,7 +43,6 @@ document.addEventListener("load", () => {
 });
 
 //
-setTimeout(setup, 0, 3);
 // setup(100);
 function main() {
 	const sampleCountELm = document.getElementById("sampleCount");
