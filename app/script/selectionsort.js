@@ -1,53 +1,73 @@
-// function selectionSort() {
-// 	// const arr = globalVar.dataSet.dataField;
-// 	const arr = [6, 2, 7, 1, 8];
-// 	console.log(arr);
-// 	for (let i = 0; i < arr.length; i++) {
-// 		let small = i;
-// 		for (let j = i + 1; j < arr.length; j++) {
-// 			small = arr[j] < arr[small] ? j : small;
-// 		}
-
-// 		const tmp = arr[small];
-
-// 		arr[small] = arr[i];
-// 		arr[i] = tmp;
-// 		console.log(arr);
-// 	}
-// }
-
 function selectionSort() {
-	const arr = globalVar.dataSet.dataField;
-	let small;
-	console.log(arr);
-
-	for (let i = 0, len = arr.length; i < len; i++) {
-		small = i;
-		for (let j = i + 1; j < len; j++) {
-			small = arr[j].value < arr[small].value ? j : small;
-		}
-
-		alterHeightOfElement(arr[small].barID, arr[i].barID);
-		const tmp = arr[small];
-		arr[small] = arr[i];
-		arr[i] = tmp;
-		smallest = small;
+	const arrayElm = globalVar.dataSet.dataField;
+	// console.table(arrayElm);
+	for (let i = 0, len = arrayElm.length; i < len; i++) {
+		let smallest = findSmallest(arrayElm, i);
+		// console.log(arrayElm[smallest]);
+		swapBars(smallest, i);
+		//swapping
+		((small, index) => {
+			const temp = arrayElm[small];
+			arrayElm[small] = arrayElm[index];
+			arrayElm[index] = temp;
+		})(smallest, i);
+		// console.table(arrayElm);
 	}
-
-	// console.log(arr[0]);
+	// console.log(arrayElm);
 }
 
-const alterHeightOfElement = (smallestValID, ID) => {
-	const smallestValElm = document.getElementById(`bar${smallestValID}`),
-		elm = document.getElementById(`bar${ID}`);
-	console.log("Smallest", smallestValElm);
-	console.log("TO BE", elm);
+const findSmallest = (arr, startIndex = 0, endIndex) => {
+	if (!Array.isArray(arr)) {
+		throw new Error("Passed Value Is Not An Array");
+	}
 
-	console.log(elm.style.height, smallestValElm.style.height);
+	const lengthOfArray = arr.length;
 
-	const elmHeight = elm.style.height;
-	elm.style.height = smallestValElm.style.height;
-	smallestValElm.style.height = elmHeight;
-	console.log(elm.style.height, smallestValElm.style.height);
+	if (startIndex < 0 || endIndex > lengthOfArray) {
+		throw new Error("Invalid Index Passed");
+	}
+
+	let smallest = startIndex || 0;
+	endIndex = endIndex || lengthOfArray;
+
+	for (let i = startIndex + 1; i < endIndex; i++) {
+		if (arr[i].value < arr[smallest].value) {
+			smallest = i;
+		}
+	}
+
+	return smallest;
 };
-//todo
+
+const swapBars = (posA, posB) => {
+	if (posA === posB) return;
+
+	const elmA = getBArWithID(`bar${posA}`),
+		elmB = getBArWithID(`bar${posB}`);
+
+	console.log(elmA, elmB);
+	const temp = { ...elmA };
+
+	setProperties(elmA.elm, elmB);
+	setProperties(elmB.elm, temp);
+	console.log(elmA, elmB);
+};
+
+const getBArWithID = (id) => {
+	// console.log(id);
+	const elm = document.getElementById(`${id}`);
+	if (!(elm instanceof Element)) {
+		throw new Error("Passed Is Not A Element");
+	}
+	return {
+		elm,
+		height: elm.style.height,
+		barID: id,
+	};
+};
+
+const setProperties = (toElm, fromElmObj) => {
+	// console.log(toElm, fromElmObj);
+	toElm.style.height = fromElmObj.height;
+	toElm.setAttribute("id", fromElmObj.barID);
+};

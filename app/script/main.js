@@ -21,13 +21,13 @@ function insertBox() {
 async function setup(count) {
 	const barContainerObject = insertBox();
 	barContainerObject.barElement.innerHTML = "";
-	let i = count;
-	while (i--) {
+	let i = 0;
+	while (i < count) {
 		const newBarElement = new Bar(`bar${i}`),
 			newBarValue = parseInt(newBarElement.barElm.style.height);
 
 		setTimeout(barContainerObject.push, 0, newBarElement.barElm);
-		globalVar.dataSet.push(i, newBarValue);
+		globalVar.dataSet.push(i++, newBarValue);
 	}
 }
 
@@ -42,7 +42,7 @@ document.addEventListener("load", () => {
 });
 
 //
-setTimeout(setup, 0, 10);
+setTimeout(setup, 0, 3);
 // setup(100);
 function main() {
 	const sampleCountELm = document.getElementById("sampleCount");
